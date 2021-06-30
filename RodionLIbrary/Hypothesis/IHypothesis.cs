@@ -9,11 +9,12 @@ namespace RodionLIbrary.Hypothesis
         /// Вычисленное значение статистики критерия для проверки гипотезы
         /// </summary>
         /// <returns>U(вычисленное)</returns>
-        public double GetAnswer { get; set; }
+        public double GetAnswer();
 
         /// <summary>
-        /// Ход решения
+        /// Получить ход решения
         /// </summary>
-        public string GetSolution { get; set; }
+        /// <returns>Ход решения, записанный построчно</returns>
+        public string[] GetSolution();
     }
 }

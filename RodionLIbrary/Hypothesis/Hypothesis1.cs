@@ -12,10 +12,44 @@ namespace RodionLIbrary.Hypothesis
     class Hypothesis1 : IHypothesis
     {
         /// <summary>
+        /// Конструктор для создания экземпляра класса Hypothesis1 (каждый экземпляр представляет собой задачу, связанную с данной гипотезой)
+        /// </summary>
+        /// <param name="mean">Среднее значение совокупности</param>
+        /// <param name="count">Количество элементов в совокупности</param>
+        /// <param name="averageSd">Среднее квадратичное отклонение</param>
+        public Hypothesis1(double mean, double count, double averageSd)
+        {
+            this.mean = mean;
+            this.count = count;
+            this.averageSd = averageSd;
+        }
+
+        /// <summary>
         /// Среднее значение 
         /// </summary>
         public double mean;
-        public double GetAnswer { get; set; }
-        public string GetSolution { get; set; }
+
+        /// <summary>
+        /// Количество элментов в совокупности
+        /// </summary>
+        public double count;
+
+        /// <summary>
+        /// Среднее квадратичное отклонение
+        /// </summary>
+        public double averageSd;
+
+        public double a;
+        public double GetAnswer()
+        {
+            return (mean - a) / (averageSd / Math.Sqrt(count));
+        }
+        public string[] GetSolution()
+        {
+            string[] solution = new string[2];
+            solution[0] = $"U(выч)= (ср. значение совокупности - a) / (ср. кв. откл. / кв. корень(кол-во элементов в совокупности))";
+            solution[1] = $"U(выч)= ({mean} - {a}) / ({averageSd} / кв. корень({count}))";
+            return solution;
+        }
     }
 }
