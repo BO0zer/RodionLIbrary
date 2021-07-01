@@ -8,6 +8,8 @@ namespace RodionLIbrary.Statistics
 {
     public abstract class Statistics
     {
+        public static double Mean(IEnumerable<double> data) => data.Average();
+
 
     }
 }
