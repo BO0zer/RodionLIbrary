@@ -10,6 +10,13 @@ namespace RodionLIbrary.Statistics
     {
         public static double Mean(IEnumerable<double> data) => data.Average();
 
+        public static double Var(IEnumerable<double> data)
+        {
+            double sqrMean = 0;
+            foreach (var item in data) sqrMean += Math.Pow(item, 2);
+            sqrMean /= data.Count();
 
+            return sqrMean - Math.Pow(Mean(data), 2);
+        }
     }
 }
