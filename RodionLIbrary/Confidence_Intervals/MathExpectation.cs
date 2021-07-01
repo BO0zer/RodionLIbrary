@@ -8,19 +8,19 @@ namespace RodionLIbrary.Confidence_Intervals
 {
     public class MathExpectation : IConfidenceInterval
     {
-        private double _confidenceLevel;
+        private int _confidenceLevel;
 
-        public MathExpectation(double confidenceLevel, bool isNormalDistribution, bool isSdKnown, double mean, double sd)
+        public MathExpectation(int confidenceLevel, bool isNormalDistribution, bool isSdKnown, double mean, double sd)
         {
             ConfidenceLevel = confidenceLevel;
         }
 
-        public MathExpectation(double confidenceLevel, bool isNormalDistribution, bool isSdKnown, IEnumerable<double> data)
+        public MathExpectation(int confidenceLevel, bool isNormalDistribution, bool isSdKnown, IEnumerable<double> data)
         {
             ConfidenceLevel = confidenceLevel;
         }
 
-        public double ConfidenceLevel 
+        public int ConfidenceLevel
         {
             get => _confidenceLevel;
 

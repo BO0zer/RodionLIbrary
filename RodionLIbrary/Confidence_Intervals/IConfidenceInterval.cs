@@ -8,7 +8,7 @@ namespace RodionLIbrary.Confidence_Intervals
 {
     public interface IConfidenceInterval
     {
-        double ConfidenceLevel { get; set; }
+        int ConfidenceLevel { get; set; }
 
         IAnswer GetLeftSided();
 
