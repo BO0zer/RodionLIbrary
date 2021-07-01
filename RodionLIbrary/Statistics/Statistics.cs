@@ -18,5 +18,7 @@ namespace RodionLIbrary.Statistics
 
             return sqrMean - Math.Pow(Mean(data), 2);
         }
+
+        public static double Sd(IEnumerable<double> data) => Math.Sqrt(Var(data));
     }
 }
