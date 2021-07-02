@@ -6,15 +6,15 @@ using System.Threading.Tasks;
 
 namespace RodionLIbrary.Confidence_Intervals
 {
-    public class LeftSidedAnswer : IAnswer
+    public class RightSidedAnswer : IAnswer
     {
-        public LeftSidedAnswer(double value)
+        public RightSidedAnswer(double value)
         {
             IAnswer answer = this;
 
             Value = value;
 
-            SolutionText = $"Левосторонний доверительный интервал: a >= {answer.Round(Value)}";
+            SolutionText = $"Правосторонний доверительный интервал: a <= {answer.Round(Value)}";
         }
 
         public string SolutionText { get; private set; }
