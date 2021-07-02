@@ -8,6 +8,10 @@ namespace RodionLIbrary
 {
     public interface IAnswer
     {
+        private const int _defaultDecimals = 3;
+
         string SolutionText { get; }
+
+        protected double Round(double value, int decimals = _defaultDecimals) => Math.Round(value, decimals);
     }
 }
