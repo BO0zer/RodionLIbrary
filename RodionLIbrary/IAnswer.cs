@@ -12,6 +12,6 @@ namespace RodionLIbrary
 
         string SolutionText { get; }
 
-        protected double Round(double value, int decimals = _defaultDecimals) => Math.Round(value, decimals);
+        internal double Round(double value, int decimals = _defaultDecimals) => Math.Round(value, decimals);
     }
 }
