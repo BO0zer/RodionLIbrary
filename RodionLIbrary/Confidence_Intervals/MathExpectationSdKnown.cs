@@ -31,12 +31,16 @@ namespace RodionLIbrary.Confidence_Intervals
 
         public override IAnswer GetLeftSided()
         {
-            throw new NotImplementedException();
+            double value = Mean - NormalDistributionTable.GetX(ConfidenceLevel) * (Sd / Math.Sqrt(Number));
+
+            return new LeftSidedAnswer(value);
         }
 
         public override IAnswer GetRightSided()
         {
-            throw new NotImplementedException();
+            double value = Mean + NormalDistributionTable.GetX(ConfidenceLevel) * (Sd / Math.Sqrt(Number));
+
+            return new RightSidedAnswer(value);
         }
     }
 }
