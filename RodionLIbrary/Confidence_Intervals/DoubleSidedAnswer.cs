@@ -18,7 +18,7 @@ namespace RodionLIbrary.Confidence_Intervals
 
             double left = answer.Round(LeftBorder), right = answer.Round(RightBorder);
 
-            SolutionText = $"Двусторонний довирительный интервал: {left} <= a <= {right}";
+            SolutionText = $"Двусторонний доверительный интервал: {left} <= a <= {right}";
             SolutionText += $"\nЛевая граница: {left}";
             SolutionText += $"\nПравая граница: {right}";
             SolutionText += $"\nРазница: {answer.Round(Difference)}";
