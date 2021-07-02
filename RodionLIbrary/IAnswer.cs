@@ -8,6 +8,6 @@ namespace RodionLIbrary
 {
     public interface IAnswer
     {
-        string[] SolutionText { get; }
+        string SolutionText { get; }
     }
 }
