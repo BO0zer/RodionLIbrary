@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace RodionLIbrary.StatTables
 {
-    public class NormalDistributionTable
+    public abstract class NormalDistributionTable
     {
-        public double GetT(int confidenceLevel)
+        public static double GetT(int confidenceLevel)
         {
             throw new NotImplementedException();
         }
 
-        public double GetX(int confidenceLevel)
+        public static double GetX(int confidenceLevel)
         {
             throw new NotImplementedException();
         }
