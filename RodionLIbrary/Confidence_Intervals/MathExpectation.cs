@@ -1,23 +1,27 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RodionLIbrary.Confidence_Intervals
 {
-    public class MathExpectation : IConfidenceInterval
+    public abstract class MathExpectation : IConfidenceInterval
     {
         private int _confidenceLevel;
 
-        public MathExpectation(int confidenceLevel, bool isNormalDistribution, bool isSdKnown, double mean, double sd)
+        private int _number;
+
+        public MathExpectation(int confidenceLevel, int n, double mean)
         {
             ConfidenceLevel = confidenceLevel;
+            Number = n;
+            Mean = mean;
         }
 
-        public MathExpectation(int confidenceLevel, bool isNormalDistribution, bool isSdKnown, IEnumerable<double> data)
+        public MathExpectation(int confidenceLevel, IEnumerable<double> data)
         {
             ConfidenceLevel = confidenceLevel;
+            Number = data.Count();
+            Mean = Statistics.Statistics.Mean(data);
         }
 
         public int ConfidenceLevel
@@ -26,25 +30,30 @@ namespace RodionLIbrary.Confidence_Intervals
 
             set
             {
-                if (value < 1 || value > 100) throw new Exception("Confidence level is out of range (1-100%)");
+                if (value < 1 || value > 100) throw new Exception("Confidence level is out of range (1-100%).");
 
                 _confidenceLevel = value;
             } 
         }
 
-        public IAnswer GetDoubleSided()
+        public int Number
         {
-            throw new NotImplementedException();
+            get => _number;
+
+            set
+            {
+                if (value < 1) throw new Exception("Number must be above 0.");
+
+                _number = value;
+            }
         }
 
-        public IAnswer GetLeftSided()
-        {
-            throw new NotImplementedException();
-        }
+        public double Mean { get; set; }
 
-        public IAnswer GetRightSided()
-        {
-            throw new NotImplementedException();
-        }
+        public abstract IAnswer GetDoubleSided();
+
+        public abstract IAnswer GetLeftSided();
+
+        public abstract IAnswer GetRightSided();
     }
 }
