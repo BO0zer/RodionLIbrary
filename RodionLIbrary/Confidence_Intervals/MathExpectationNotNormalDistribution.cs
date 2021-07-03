@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RodionLIbrary.StatTables;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,23 +9,33 @@ namespace RodionLIbrary.Confidence_Intervals
 {
     public class MathExpectationNotNormalDistribution : MathExpectation
     {
-        public MathExpectationNotNormalDistribution(int confidenceLevel, int n, double mean) : base(confidenceLevel, n, mean) { }
+        private double _calculatedSd;
 
-        public MathExpectationNotNormalDistribution(int confidenceLevel, IEnumerable<double> data) : base(confidenceLevel, data) { }
+        public MathExpectationNotNormalDistribution(int confidenceLevel, IEnumerable<double> data) : base(confidenceLevel, data) 
+        {
+            _calculatedSd = Statistics.Statistics.Sd(data);
+        }
 
         public override IAnswer GetDoubleSided()
         {
-            throw new NotImplementedException();
+            double left = Mean - NormalDistributionTable.GetT(ConfidenceLevel) * (_calculatedSd / Math.Sqrt(Number));
+            double right = Mean + NormalDistributionTable.GetT(ConfidenceLevel) * (_calculatedSd / Math.Sqrt(Number));
+
+            return new DoubleSidedAnswer(left, right);
         }
 
         public override IAnswer GetLeftSided()
         {
-            throw new NotImplementedException();
+            double value = Mean - NormalDistributionTable.GetX(ConfidenceLevel) * (_calculatedSd / Math.Sqrt(Number));
+
+            return new LeftSidedAnswer(value);
         }
 
         public override IAnswer GetRightSided()
         {
-            throw new NotImplementedException();
+            double value = Mean + NormalDistributionTable.GetX(ConfidenceLevel) * (_calculatedSd / Math.Sqrt(Number));
+
+            return new RightSidedAnswer(value);
         }
     }
 }
