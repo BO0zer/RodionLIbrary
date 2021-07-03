@@ -6,18 +6,17 @@ using System.Threading.Tasks;
 
 namespace RodionLIbrary.Confidence_Intervals
 {
-    public class LeftSidedAnswer : IAnswer
+    public class LeftSidedAnswer : Answer
     {
-        public LeftSidedAnswer(double value)
+        public LeftSidedAnswer(double value, string main, string formula, string calculation)
         {
-            IAnswer answer = this;
-
             Value = value;
 
-            SolutionText = $"Левосторонний доверительный интервал: a >= {answer.Round(Value)}";
+            SolutionText = "Левосторонний доверительный интервал:";
+            AddText(formula); // formula
+            AddText(calculation); // calculation
+            AddText($"{main} >= {Round(Value)}"); // result
         }
-
-        public string SolutionText { get; private set; }
 
         public double Value { get; private set; }
     }
