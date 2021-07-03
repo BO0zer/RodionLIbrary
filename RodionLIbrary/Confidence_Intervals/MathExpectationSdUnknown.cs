@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RodionLIbrary.StatTables;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,17 +23,24 @@ namespace RodionLIbrary.Confidence_Intervals
 
         public override IAnswer GetDoubleSided()
         {
-            throw new NotImplementedException();
+            double left = Mean - StudentDistributionTable.GetT(ConfidenceLevel, Number - 1) * (CalculatedSd / Math.Sqrt(Number - 1));
+            double right = Mean + StudentDistributionTable.GetT(ConfidenceLevel, Number - 1) * (CalculatedSd / Math.Sqrt(Number - 1));
+
+            return new DoubleSidedAnswer(left, right);
         }
 
         public override IAnswer GetLeftSided()
         {
-            throw new NotImplementedException();
+            double value = Mean - StudentDistributionTable.GetX(ConfidenceLevel, Number - 1) * (CalculatedSd / Math.Sqrt(Number - 1));
+
+            return new LeftSidedAnswer(value);
         }
 
         public override IAnswer GetRightSided()
         {
-            throw new NotImplementedException();
+            double value = Mean + StudentDistributionTable.GetX(ConfidenceLevel, Number - 1) * (CalculatedSd / Math.Sqrt(Number - 1));
+
+            return new RightSidedAnswer(value);
         }
     }
 }
