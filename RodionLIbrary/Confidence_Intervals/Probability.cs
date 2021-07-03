@@ -42,7 +42,7 @@ namespace RodionLIbrary.Confidence_Intervals
             {
                 if (value < 1) throw new Exception("'n' value must be above 0.");
 
-                if (value < _m) throw new Exception("'n' must be not less than 'm'.");
+                if (value < m) throw new Exception("'n' must be not less than 'm'.");
 
                 _n = value;
             }
@@ -56,7 +56,7 @@ namespace RodionLIbrary.Confidence_Intervals
             {
                 if (value < 0) throw new Exception("'m' value must not less than 0.");
 
-                if (value > _n) throw new Exception("'m' must be not greater than 'n'.");
+                if (value > n) throw new Exception("'m' must be not greater than 'n'.");
 
                 _m = value;
             }
