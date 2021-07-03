@@ -8,7 +8,7 @@ namespace RodionLIbrary.Confidence_Intervals
 {
     public class DoubleSidedAnswer : IAnswer
     {
-        public DoubleSidedAnswer(double leftBorder, double rightBorder)
+        public DoubleSidedAnswer(double leftBorder, double rightBorder, string main, string formula, string calculation)
         {
             IAnswer answer = this;
 
@@ -18,10 +18,13 @@ namespace RodionLIbrary.Confidence_Intervals
 
             double left = answer.Round(LeftBorder), right = answer.Round(RightBorder);
 
-            SolutionText = $"Двусторонний доверительный интервал: {left} <= a <= {right}";
-            SolutionText += $"\nЛевая граница: {left}";
-            SolutionText += $"\nПравая граница: {right}";
-            SolutionText += $"\nРазница: {answer.Round(Difference)}";
+            SolutionText = "Двусторонний доверительный интервал:";
+            AddText(formula); // formula
+            AddText(calculation); // calculation
+            AddText($"{left} <= {main} <= {right}"); // result
+            AddText($"Левая граница: {left}");
+            AddText($"Правая граница: {right}");
+            AddText($"Разница: {answer.Round(Difference)}");
         }
 
         public string SolutionText { get; private set; }
@@ -31,5 +34,7 @@ namespace RodionLIbrary.Confidence_Intervals
         public double RightBorder { get; private set; }
 
         public double Difference { get; private set; }
+
+        private void AddText(string text, string sep = "\n") => SolutionText += sep + text;
     }
 }
