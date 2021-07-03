@@ -23,24 +23,39 @@ namespace RodionLIbrary.Confidence_Intervals
 
         public override IAnswer GetDoubleSided()
         {
-            double left = Mean - NormalDistributionTable.GetT(ConfidenceLevel) * (Sd / Math.Sqrt(Number));
-            double right = Mean + NormalDistributionTable.GetT(ConfidenceLevel) * (Sd / Math.Sqrt(Number));
+            double stat = NormalDistributionTable.GetT(ConfidenceLevel);
+            double left = Mean - stat * (Sd / Math.Sqrt(Number));
+            double right = Mean + stat * (Sd / Math.Sqrt(Number));
 
-            return new DoubleSidedAnswer(left, right);
+            string main = "a";
+            string formula = $"M[X] - t[N] * (σ / √n) <= {main} <= M[X] + t[N] * (σ / √n)";
+            string calculation = $"{Mean} - {stat} * ({Sd} / √{Number}) <= {main} <= {Mean} + {stat} * ({Sd} / √{Number})";
+
+            return new DoubleSidedAnswer(left, right, main, formula, calculation);
         }
 
         public override IAnswer GetLeftSided()
         {
-            double value = Mean - NormalDistributionTable.GetX(ConfidenceLevel) * (Sd / Math.Sqrt(Number));
+            double stat = NormalDistributionTable.GetX(ConfidenceLevel);
+            double value = Mean - stat * (Sd / Math.Sqrt(Number));
 
-            return new LeftSidedAnswer(value);
+            string main = "a";
+            string formula = $"{main} >= M[X] - x[N] * (σ / √n)";
+            string calculation = $"{main} >= {Mean} - {stat} * ({Sd} / √{Number})";
+
+            return new LeftSidedAnswer(value, main, formula, calculation);
         }
 
         public override IAnswer GetRightSided()
         {
-            double value = Mean + NormalDistributionTable.GetX(ConfidenceLevel) * (Sd / Math.Sqrt(Number));
+            double stat = NormalDistributionTable.GetX(ConfidenceLevel);
+            double value = Mean + stat * (Sd / Math.Sqrt(Number));
 
-            return new RightSidedAnswer(value);
+            string main = "a";
+            string formula = $"{main} <= M[X] + x[N] * (σ / √n)";
+            string calculation = $"{main} <= {Mean} + {stat} * ({Sd} / √{Number})";
+
+            return new RightSidedAnswer(value, main, formula, calculation);
         }
     }
 }
