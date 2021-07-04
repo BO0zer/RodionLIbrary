@@ -16,8 +16,8 @@ namespace RodionLIbrary.StatTables
             [95] = 1.64,
             [90] = 1.28
         };
-        public static double GetT(int confidenceLevel) => normalDistributionTable[(1 + confidenceLevel) / 2];
+        public static double GetT(double confidenceLevel) => normalDistributionTable[(1 + confidenceLevel) / 2];
 
-        public static double GetX(int confidenceLevel) => normalDistributionTable[confidenceLevel];
+        public static double GetX(double confidenceLevel) => normalDistributionTable[confidenceLevel];
     }
 }
