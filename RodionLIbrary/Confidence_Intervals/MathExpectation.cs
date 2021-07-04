@@ -50,10 +50,10 @@ namespace RodionLIbrary.Confidence_Intervals
 
         public double Mean { get; set; }
 
-        public abstract IAnswer GetDoubleSided();
+        public abstract DoubleSidedAnswer GetDoubleSided();
 
-        public abstract IAnswer GetLeftSided();
+        public abstract LeftSidedAnswer GetLeftSided();
 
-        public abstract IAnswer GetRightSided();
+        public abstract RightSidedAnswer GetRightSided();
     }
 }

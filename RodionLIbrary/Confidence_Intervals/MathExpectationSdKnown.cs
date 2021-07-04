@@ -21,7 +21,7 @@ namespace RodionLIbrary.Confidence_Intervals
 
         public double Sd { get; set; }
 
-        public override IAnswer GetDoubleSided()
+        public override DoubleSidedAnswer GetDoubleSided()
         {
             double stat = NormalDistributionTable.GetT(ConfidenceLevel);
             double left = Mean - stat * (Sd / Math.Sqrt(Number));
@@ -34,7 +34,7 @@ namespace RodionLIbrary.Confidence_Intervals
             return new DoubleSidedAnswer(left, right, main, formula, calculation);
         }
 
-        public override IAnswer GetLeftSided()
+        public override LeftSidedAnswer GetLeftSided()
         {
             double stat = NormalDistributionTable.GetX(ConfidenceLevel);
             double value = Mean - stat * (Sd / Math.Sqrt(Number));
@@ -46,7 +46,7 @@ namespace RodionLIbrary.Confidence_Intervals
             return new LeftSidedAnswer(value, main, formula, calculation);
         }
 
-        public override IAnswer GetRightSided()
+        public override RightSidedAnswer GetRightSided()
         {
             double stat = NormalDistributionTable.GetX(ConfidenceLevel);
             double value = Mean + stat * (Sd / Math.Sqrt(Number));

@@ -53,7 +53,7 @@ namespace RodionLIbrary.Confidence_Intervals
 
         public double CalculatedVariance { get; set; }
 
-        public IAnswer GetDoubleSided()
+        public DoubleSidedAnswer GetDoubleSided()
         {
             double statLeft = ChiDistributionTable.GetX((100 + ConfidenceLevel) / 2, Number - 1);
             double statRight = ChiDistributionTable.GetX((100 - ConfidenceLevel) / 2, Number - 1);
@@ -67,7 +67,7 @@ namespace RodionLIbrary.Confidence_Intervals
             return new DoubleSidedAnswer(left, right, main, formula, calculation);
         }
 
-        public IAnswer GetLeftSided()
+        public LeftSidedAnswer GetLeftSided()
         {
             double stat = ChiDistributionTable.GetX(ConfidenceLevel, Number - 1);
             double value = Number * CalculatedVariance / stat;
@@ -79,7 +79,7 @@ namespace RodionLIbrary.Confidence_Intervals
             return new LeftSidedAnswer(value, main, formula, calculation);
         }
 
-        public IAnswer GetRightSided()
+        public RightSidedAnswer GetRightSided()
         {
             double stat = ChiDistributionTable.GetX(100 - ConfidenceLevel, Number - 1);
             double value = Number * CalculatedVariance / stat;

@@ -62,7 +62,7 @@ namespace RodionLIbrary.Confidence_Intervals
             }
         }
 
-        public IAnswer GetDoubleSided()
+        public DoubleSidedAnswer GetDoubleSided()
         {
             double w = (double)m / n;
             double stat = NormalDistributionTable.GetT(ConfidenceLevel);
@@ -76,7 +76,7 @@ namespace RodionLIbrary.Confidence_Intervals
             return new DoubleSidedAnswer(left, right, main, formula, calculation);
         }
 
-        public IAnswer GetLeftSided()
+        public LeftSidedAnswer GetLeftSided()
         {
             double w = (double)m / n;
             double stat = NormalDistributionTable.GetX(ConfidenceLevel);
@@ -89,7 +89,7 @@ namespace RodionLIbrary.Confidence_Intervals
             return new LeftSidedAnswer(value, main, formula, calculation);
         }
 
-        public IAnswer GetRightSided()
+        public RightSidedAnswer GetRightSided()
         {
             double w = (double)m / n;
             double stat = NormalDistributionTable.GetX(ConfidenceLevel);

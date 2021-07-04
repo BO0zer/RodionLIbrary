@@ -10,10 +10,10 @@ namespace RodionLIbrary.Confidence_Intervals
     {
         int ConfidenceLevel { get; set; }
 
-        IAnswer GetLeftSided();
+        LeftSidedAnswer GetLeftSided();
 
-        IAnswer GetRightSided();
+        RightSidedAnswer GetRightSided();
 
-        IAnswer GetDoubleSided();
+        DoubleSidedAnswer GetDoubleSided();
     }
 }
