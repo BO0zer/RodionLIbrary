@@ -8,14 +8,16 @@ namespace RodionLIbrary.StatTables
 {
     public abstract class NormalDistributionTable
     {
-        public static double GetT(int confidenceLevel)
+        private static Dictionary<double, double> normalDistributionTable = new Dictionary<double, double>
         {
-            throw new NotImplementedException();
-        }
+            [99] = 2.33,
+            [98] = 2.05,
+            [97.5] = 1.96,
+            [95] = 1.64,
+            [90] = 1.28
+        };
+        public static double GetT(int confidenceLevel) => normalDistributionTable[(1 + confidenceLevel) / 2];
 
-        public static double GetX(int confidenceLevel)
-        {
-            throw new NotImplementedException();
-        }
+        public static double GetX(int confidenceLevel) => normalDistributionTable[confidenceLevel];
     }
 }
