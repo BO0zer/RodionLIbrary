@@ -16,8 +16,19 @@ namespace RodionLIbrary.StatTables
             [0.95] = 1.64,
             [0.90] = 1.28
         };
-        public static double GetT(double confidenceLevel) => normalDistributionTable[(1 + confidenceLevel) / 2];
 
-        public static double GetX(double confidenceLevel) => normalDistributionTable[confidenceLevel];
+        /// <summary>
+        /// Получение t-значения статистической таблицы нормального распределения
+        /// </summary>
+        /// <param name="confidenceLevel">Уровень значимости в процентах</param>
+        /// <returns>t-значение</returns>
+        public static double GetT(double confidenceLevel) => normalDistributionTable[(1 + confidenceLevel / 100) / 2];
+
+        /// <summary>
+        /// Получение x-значения статистической таблицы нормального распределения
+        /// </summary>
+        /// <param name="confidenceLevel">Уровень значимости в процентах</param>
+        /// <returns>x-значение</returns>
+        public static double GetX(double confidenceLevel) => normalDistributionTable[confidenceLevel / 100];
     }
 }

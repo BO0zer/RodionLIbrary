@@ -8,7 +8,7 @@ namespace RodionLIbrary.StatTables
 {
     public abstract class StudentDistributionTable
     {
-        private static Dictionary<Tuple<double, int>, double> normalDistributionTable = new Dictionary<Tuple<double, int>, double>
+        private static Dictionary<Tuple<double, int>, double> studentDistributionTable = new Dictionary<Tuple<double, int>, double>
         {
             [new Tuple<double, int>(0.99, 5)] = 3.36,
             [new Tuple<double, int>(0.98, 5)] = 2.76,
@@ -106,8 +106,21 @@ namespace RodionLIbrary.StatTables
             [new Tuple<double, int>(0.95, 20)] = 1.72,
             [new Tuple<double, int>(0.9, 20)] = 1.33,
         };
-        public static double GetT(double confidenceLevel, int degree) => normalDistributionTable[new Tuple<double, int>((confidenceLevel + 1) / 2, degree)];
 
-        public static double GetX(double confidenceLevel, int degree) => normalDistributionTable[new Tuple<double, int>(confidenceLevel, degree)];
+        /// <summary>
+        /// Получение t-значения статистической таблицы распределения Стьюдента с v степенями свободы
+        /// </summary>
+        /// <param name="confidenceLevel">Уровень значимости в процентах</param>
+        /// <param name="degree">Степень свободы</param>
+        /// <returns>t-значение</returns>
+        public static double GetT(double confidenceLevel, int degree) => studentDistributionTable[new Tuple<double, int>((confidenceLevel / 100 + 1) / 2, degree)];
+
+        /// <summary>
+        /// Получение x-значения статистической таблицы распределения Стьюдента с v степенями свободы
+        /// </summary>
+        /// <param name="confidenceLevel">Уровень значимости в процентах</param>
+        /// /// <param name="degree">Степень свободы</param>
+        /// <returns>x-значение</returns>
+        public static double GetX(double confidenceLevel, int degree) => studentDistributionTable[new Tuple<double, int>(confidenceLevel / 100, degree)];
     }
 }
